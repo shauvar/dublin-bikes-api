@@ -39,6 +39,86 @@ Body example:
   }
 }
 ```
+## How to Run the Dublin Bikes API
+
+Follow these steps to set up and run the Dublin Bikes API on your local machine:
+
+### Prerequisites
+
+- Node.js (v12 or higher)
+- npm (usually comes with Node.js)
+- Git
+
+### Setup
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yshauvar/dublin-bikes-api.git
+   cd dublin-bikes-api
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+### Running the API
+
+1. Start the server:
+   ```
+   node app.js
+   ```
+
+2. You should see a message: "Server is running on port 3000"
+
+### Testing the API
+
+You can use curl, Postman, or any API testing tool. Here are examples using curl:
+
+1. Get the schema:
+   ```
+   curl http://localhost:3000/schema
+   ```
+
+2. Query data (e.g., stations with more than 10 available bikes):
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{"where":{"Available Bikes":{"gt":10}}}' http://localhost:3000/data
+   ```
+
+### Using Postman
+
+1. Open Postman
+2. Import the Postman collection (if provided in the project)
+3. Or create a new request:
+   - Set method to POST
+   - URL: `http://localhost:3000/data`
+   - Body: raw, JSON
+   - Enter query in the body, e.g.:
+     ```json
+     {
+       "where": {
+         "Available Bikes": {"gt": 10}
+       }
+     }
+     ```
+4. Send the request
+
+### Troubleshooting
+
+- If you get a "port in use" error, change the port in `app.js` and try again
+- Ensure all files (`app.js`, `schema.js`, `dublinBikesData.json`) are in the project root directory
+
+### Modifying the Data
+
+To use different data:
+1. Replace the content in `dublinBikesData.json`
+2. Restart the server
+
+### Shutting Down
+
+To stop the server, press `Ctrl + C` in the terminal where it's running.
+
+For any issues or questions, please open an issue on the GitHub repository.
 
 ## Future Improvements
 
